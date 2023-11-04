@@ -1,0 +1,24 @@
+{
+    "notes": "مذكرات",
+    "title": "عنوان",
+    "enterTitle": "ادخل العنوان",
+    "yourNote": "مذكراتك",
+    "enterYourNote": "ادخل مذكراتك",
+    "password": "كلمة السر",
+    "addYourNote": "ضف مذكرة",
+    "arabic": "عربي",
+    "english": "انجليزي",
+    "hi": "اهلا وسهلا {value} , {second}",
+    "@hi": {
+        "placeholders": {
+            "value": {},
+            "second": {}
+        }
+    },
+    "currency": "{value} جنية مصري",
+    "@currency":{
+        "placeholders": {
+            "value": {}
+        }
+    }
+}

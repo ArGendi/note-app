@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revision/controllers/home/home_controller.dart';
 import 'package:revision/controllers/home/home_state.dart';
+import 'package:revision/controllers/lang/lang_cubit.dart';
 import 'package:revision/widgets/custom_button.dart';
 import 'package:revision/widgets/custom_textfeild.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -59,9 +61,39 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Notes",),
+        title: Text(AppLocalizations.of(context)!.currency(200),),
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
+        centerTitle: true,
+      ),
+      drawer: Drawer(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextButton(
+              onPressed: (){
+                LangCubit.get(context).changeLang('ar');
+              },
+              child: Text(
+                AppLocalizations.of(context)!.arabic,
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: (){
+                LangCubit.get(context).changeLang('en');
+              },
+              child: Text(
+                AppLocalizations.of(context)!.english,
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
       body: BlocBuilder<HomeControllerCubit, HomeState>(
         builder: (context, state) {
@@ -124,33 +156,33 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       CustomTextField(
-                        text: "Title",
+                        text: AppLocalizations.of(context)!.title,
                         onSaved: (value){
                           HomeControllerCubit.get(context).note.title = value;
                         }, 
                         validator: (value){
                           if(value!.isEmpty){
-                            return 'Enter title';
+                            return AppLocalizations.of(context)!.enterTitle;
                           }
                           return null;
                         },
                       ),
                       SizedBox(height: 10,),
                       CustomTextField(
-                        text: "Your note",
+                        text: AppLocalizations.of(context)!.yourNote,
                         onSaved: (value){
                           HomeControllerCubit.get(context).note.content = value;
                         }, 
                         validator: (value){
                           if(value!.isEmpty){
-                            return 'Enter your note';
+                            return AppLocalizations.of(context)!.enterYourNote;
                           }
                           return null;
                         },
                       ),
                       SizedBox(height: 10,),
                       CustomTextField(
-                        text: "Password",
+                        text: AppLocalizations.of(context)!.password,
                         onSaved: (value){
                           HomeControllerCubit.get(context).note.password = value;
                         }, 
@@ -160,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       SizedBox(height: 10,),
                       CustomButton(
-                        text: 'Add your note', 
+                        text: AppLocalizations.of(context)!.addYourNote, 
                         onClick: () async{
                           HomeControllerCubit.get(context).onAddNote();
                         },

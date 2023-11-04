@@ -22,4 +22,20 @@ class SharedPref{
   static String? getPassword(){
     return sharedPreferences!.getString("password");
   }
+
+  static Future<void> setLang(String langCode) async{
+    await sharedPreferences!.setString("language", langCode);
+  }
+
+  static String? getLang(){
+    return sharedPreferences!.getString("language");
+  }
+
+  static Future<void> setToken(String token) async{
+    await sharedPreferences!.setString("token", token);
+  }
+
+  static String? getToken(){
+    return sharedPreferences!.getString("token");
+  }
 }

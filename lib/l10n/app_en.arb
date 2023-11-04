@@ -1,0 +1,25 @@
+{
+    "notes": "My Notes",
+    "title": "Title",
+    "enterTitle": "Enter title",
+    "yourNote": "Your note",
+    "enterYourNote": "Enter your note",
+    "password": "Password",
+    "addYourNote": "Add your note",
+    "arabic": "Arabic",
+    "english": "English",
+    "hi": "hello {value} and {second}",
+    "@hi": {
+        "placeholders": {
+            "value": {},
+            "second": {}
+        }
+    },
+    "currency": "{value} USD",
+    "@currency":{
+        "placeholders": {
+            "value": {}
+        }
+    }
+}
+

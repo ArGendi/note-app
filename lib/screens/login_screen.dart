@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revision/controllers/login/login_controller.dart';
 import 'package:revision/controllers/login/login_state.dart';
+import 'package:revision/screens/home_screen.dart';
 import 'package:revision/widgets/custom_button.dart';
 import 'package:revision/widgets/custom_textfeild.dart';
 
@@ -50,6 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       }, 
                       validator: (value){
                         if(value!.isEmpty) return "Enter email";
+                        else if(!value.contains("@") || !value.contains(".com")) return "Invalid email";
                         else return null;
                       },
                       type: TextInputType.emailAddress,
@@ -62,6 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       }, 
                       validator: (value){
                         if(value!.isEmpty) return "Enter password";
+                        else if(value.length < 8) return "short password";
                         else return null;
                       },
                       isPassword: true,
@@ -71,7 +74,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       builder: ((context, state) {
                         return CustomButton(
                           text: "Login",
-                          onClick: LoginControllerCubit.get(context).onLogin,
+                          onClick: ()async{
+                            bool canNavigate = await LoginControllerCubit.get(context).onLogin(context);
+                            if(canNavigate){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+                            }     
+                          },
                           isLoading: state is LoadingLoginState ? true : false,
                         );
                       }),
